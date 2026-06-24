@@ -33,6 +33,9 @@ assert.match(pkg.scripts.start, /next start/, "Next project should expose a star
 const page = read("src/app/page.tsx");
 assert.match(page, /iframe[\s\S]*src="\/legacy\/index\.html"/, "The Next root page should host the preserved legacy UI");
 assert.match(page, /title="קורות חיים - גרסת Legacy"/, "The legacy iframe should have an accessible Hebrew title");
+assert.match(page, /deploymentBadge/, "The Next shell should render a deployment version badge");
+assert.match(page, /VERCEL_GIT_REPO_OWNER/, "The deployment badge should identify the source GitHub owner when deployed on Vercel");
+assert.match(page, /VERCEL_GIT_COMMIT_SHA/, "The deployment badge should include a short source commit when deployed on Vercel");
 
 const layout = read("src/app/layout.tsx");
 assert.match(layout, /<html lang="he" dir="rtl"/, "The root layout should preserve the Hebrew RTL document direction");
