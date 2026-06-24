@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Heebo } from "next/font/google";
 import "./globals.css";
+
+const heebo = Heebo({
+  subsets: ["hebrew", "latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "איתן ברון - קורות חיים",
@@ -12,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he" dir="rtl">
+    <html lang="he" dir="rtl" className={heebo.className}>
       <body>{children}</body>
     </html>
   );

@@ -16,6 +16,8 @@ function exists(rel) {
 exists("package.json");
 exists("src/app/layout.tsx");
 exists("src/app/page.tsx");
+exists("src/app/resume/page.tsx");
+exists("src/app/components/site-nav.tsx");
 exists("src/app/globals.css");
 exists("public/legacy/index.html");
 exists("src/app/api/[endpoint]/route.ts");
@@ -31,11 +33,22 @@ assert.match(pkg.scripts.build, /next build/, "Next project should expose a buil
 assert.match(pkg.scripts.start, /next start/, "Next project should expose a start script");
 
 const page = read("src/app/page.tsx");
-assert.match(page, /iframe[\s\S]*src="\/legacy\/index\.html"/, "The Next root page should host the preserved legacy UI");
-assert.match(page, /title="קורות חיים - גרסת Legacy"/, "The legacy iframe should have an accessible Hebrew title");
+assert.match(page, /href="\/resume"/, "The opening page should link to the current resume experience");
+assert.match(page, /className="landingShell"/, "The opening page should render the new landing shell");
+assert.doesNotMatch(page, /iframe[\s\S]*src="\/legacy\/index\.html"/, "The opening page should not directly host the legacy iframe");
 assert.doesNotMatch(page, /deploymentBadge/, "The Next shell should not render the deployment version badge");
 assert.doesNotMatch(page, /VERCEL_GIT_REPO_OWNER/, "The root page should not render source GitHub owner metadata");
 assert.doesNotMatch(page, /VERCEL_GIT_COMMIT_SHA/, "The root page should not render source commit metadata");
+
+const resumePage = read("src/app/resume/page.tsx");
+assert.match(resumePage, /iframe[\s\S]*src="\/legacy\/index\.html"/, "The resume page should host the preserved legacy UI");
+assert.match(resumePage, /title="קורות חיים - גרסת Legacy"/, "The legacy iframe should have an accessible Hebrew title");
+
+const siteNav = read("src/app/components/site-nav.tsx");
+assert.match(siteNav, /from "next\/link"/, "The shared nav should use Next Link navigation");
+assert.match(siteNav, /href="\/"/, "The shared nav should link back to the opening page");
+assert.match(siteNav, /href="\/resume"/, "The shared nav should link to the resume page");
+assert.match(siteNav, /איתן ברון/, "The shared nav should carry the personal brand");
 
 const layout = read("src/app/layout.tsx");
 assert.match(layout, /<html lang="he" dir="rtl"/, "The root layout should preserve the Hebrew RTL document direction");

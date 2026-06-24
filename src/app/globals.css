@@ -7,25 +7,316 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   max-width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
-  background: #e9e4dc;
-  color: #2a2f3a;
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f7faf9;
+  color: #17202a;
+  font-family: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.legacyHost {
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.siteNav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(1180px, calc(100% - 32px));
+  min-height: 74px;
+  margin: 0 auto;
+  padding: 14px 0;
+  backdrop-filter: blur(18px);
+}
+
+.siteBrand,
+.siteNavLinks,
+.landingActions {
+  display: flex;
+  align-items: center;
+}
+
+.siteBrand {
+  gap: 10px;
+  color: #15232e;
+  font-size: 17px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.siteBrandMark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #17313b;
+  color: #f6c96a;
+  font-size: 18px;
+  box-shadow: 0 12px 28px rgba(23, 49, 59, 0.22);
+}
+
+.siteNavLinks {
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid rgba(23, 49, 59, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 16px 44px rgba(23, 49, 59, 0.08);
+}
+
+.siteNavLink,
+.siteNavCta,
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.siteNavLink {
+  padding: 0 15px;
+  color: #4b5d66;
+}
+
+.siteNavLink:hover,
+.siteNavLink.isActive {
+  background: #e8f5f2;
+  color: #0f6f6c;
+}
+
+.siteNavCta {
+  padding: 0 18px;
+  background: #17313b;
+  color: #fff;
+}
+
+.siteNavCta:hover,
+.primaryAction:hover,
+.secondaryAction:hover {
+  transform: translateY(-1px);
+}
+
+.landingShell {
+  min-height: 100svh;
+  background:
+    linear-gradient(135deg, rgba(12, 111, 108, 0.09), transparent 38%),
+    linear-gradient(225deg, rgba(246, 201, 106, 0.16), transparent 34%),
+    #f7faf9;
+}
+
+.landingHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+  align-items: center;
+  gap: clamp(32px, 6vw, 82px);
+  width: min(1180px, calc(100% - 32px));
+  min-height: calc(100svh - 160px);
+  margin: 0 auto;
+  padding: clamp(34px, 6vw, 78px) 0 42px;
+}
+
+.landingCopy {
+  max-width: 680px;
+}
+
+.landingCopy h1 {
+  max-width: 760px;
+  color: #101b22;
+  font-size: clamp(40px, 6.2vw, 74px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+
+.landingCopy p {
+  max-width: 640px;
+  margin-top: 24px;
+  color: #53646c;
+  font-size: clamp(18px, 2.2vw, 23px);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.landingActions {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.primaryAction,
+.secondaryAction {
+  padding: 0 24px;
+}
+
+.primaryAction {
+  background: #0f6f6c;
+  color: #fff;
+  box-shadow: 0 18px 38px rgba(15, 111, 108, 0.24);
+}
+
+.secondaryAction {
+  border: 1px solid rgba(23, 49, 59, 0.16);
+  background: rgba(255, 255, 255, 0.72);
+  color: #17313b;
+}
+
+.heroVisual {
   position: relative;
+  min-height: 430px;
+}
+
+.heroVisual::before {
+  position: absolute;
+  inset: 28px 14px 8px 56px;
+  border-radius: 32px;
+  background:
+    linear-gradient(135deg, rgba(15, 111, 108, 0.18), rgba(246, 201, 106, 0.2)),
+    #deebe8;
+  content: "";
+  transform: rotate(-4deg);
+}
+
+.visualDocument {
+  position: relative;
+  display: flex;
+  min-height: 390px;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid rgba(23, 49, 59, 0.12);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 30px 80px rgba(23, 49, 59, 0.16);
+}
+
+.visualHeader,
+.visualGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.visualHeader {
+  grid-template-columns: 1fr 0.7fr 0.45fr;
+}
+
+.visualHeader span,
+.visualLine,
+.visualTitle,
+.visualGrid span {
+  border-radius: 999px;
+  background: #dfe9e7;
+}
+
+.visualHeader span {
+  height: 10px;
+}
+
+.visualTitle {
+  width: 56%;
+  height: 18px;
+  margin-top: 18px;
+  background: #17313b;
+}
+
+.visualLine {
+  width: 62%;
+  height: 12px;
+}
+
+.visualLine.wide {
+  width: 86%;
+}
+
+.visualSignal {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  height: 120px;
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 22px;
+  background: #f2f8f6;
+}
+
+.visualSignal i {
+  display: block;
+  width: 100%;
+  border-radius: 999px 999px 10px 10px;
+  background: linear-gradient(180deg, #2bb8ac, #0f6f6c);
+}
+
+.visualSignal i:nth-child(1) {
+  height: 42%;
+}
+
+.visualSignal i:nth-child(2) {
+  height: 70%;
+}
+
+.visualSignal i:nth-child(3) {
+  height: 92%;
+  background: linear-gradient(180deg, #f6c96a, #d69d26);
+}
+
+.visualSignal i:nth-child(4) {
+  height: 60%;
+}
+
+.visualSignal i:nth-child(5) {
+  height: 78%;
+}
+
+.visualGrid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.visualGrid span {
+  height: 48px;
+}
+
+.landingStrip {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto 48px;
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(23, 49, 59, 0.12);
+  color: #53646c;
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.resumeShell {
+  display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
+  flex-direction: column;
   overflow: hidden;
-  background: #e9e4dc;
+  background: #f7faf9;
+}
+
+.resumeShell .siteNav {
+  flex: 0 0 auto;
 }
 
 .legacyFrame {
@@ -34,4 +325,68 @@ body {
   height: 100%;
   border: 0;
   background: #fff;
+}
+
+.resumeFrameWrap {
+  min-height: 0;
+  flex: 1 1 auto;
+  border-top: 1px solid rgba(23, 49, 59, 0.12);
+}
+
+@media (max-width: 760px) {
+  .siteNav {
+    width: min(100% - 20px, 1180px);
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .siteBrand {
+    justify-content: center;
+  }
+
+  .siteNavLinks {
+    justify-content: center;
+    overflow-x: auto;
+    border-radius: 22px;
+  }
+
+  .siteNavLink,
+  .siteNavCta {
+    min-height: 38px;
+    padding-inline: 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .landingHero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    min-height: auto;
+    padding-top: 26px;
+  }
+
+  .landingCopy h1 {
+    font-size: clamp(36px, 11vw, 52px);
+    line-height: 1.08;
+  }
+
+  .landingCopy p {
+    font-size: 17px;
+  }
+
+  .heroVisual {
+    min-height: 310px;
+  }
+
+  .visualDocument {
+    min-height: 292px;
+    padding: 22px;
+  }
+
+  .visualSignal {
+    height: 86px;
+  }
 }
