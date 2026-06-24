@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SiteNav from "./components/site-nav";
 
@@ -7,48 +8,50 @@ export default function Home() {
       <SiteNav active="home" />
       <section className="landingHero" aria-labelledby="landing-title">
         <div className="landingCopy">
-          <h1 id="landing-title">קורות חיים אינטראקטיביים שמרגישים חיים</h1>
+          <div className="landingProfile">
+            <Image
+              className="profileImage"
+              src="/landing/eitan-profile.jpg"
+              alt="איתן ברון"
+              width={112}
+              height={112}
+              priority
+            />
+            <div className="profileMeta">
+              <strong>איתן ברון</strong>
+              <span>מפתח תוכנה · Full Stack · AI</span>
+            </div>
+          </div>
+          <h1 id="landing-title">קורות חיים אינטראקטיביים למפתח תוכנה</h1>
           <p>
-            חוויה עברית, קולית וחכמה שמציגה ניסיון, יכולות וסיפור מקצועי
-            במקום עוד מסמך סטטי.
+            כ-18 שנות ניסיון בפיתוח תוכנה, מערכות בנקאיות, Web ו-AI, מוצגים
+            דרך חוויה חיה עם ייצוא, קריינות ושיחה חכמה.
           </p>
           <div className="landingActions">
             <Link className="primaryAction" href="/resume">
-              לצפייה בקורות החיים
+              כניסה לקורות החיים
             </Link>
             <a className="secondaryAction" href="mailto:eitan2007@gmail.com">
               יצירת קשר
             </a>
           </div>
         </div>
-        <div className="heroVisual" aria-hidden="true">
-          <div className="visualDocument">
-            <div className="visualHeader">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="visualTitle" />
-            <div className="visualLine wide" />
-            <div className="visualLine" />
-            <div className="visualSignal">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="visualGrid">
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
+        <div className="previewStage">
+          <Image
+            className="resumePreviewImage"
+            src="/landing/resume-preview.png"
+            alt="תצוגה מקדימה של קורות החיים האינטראקטיביים"
+            width={1280}
+            height={900}
+            priority
+          />
         </div>
       </section>
       <section className="landingStrip" aria-label="תמצית">
-        <p>מפתח Full Stack עם ניסיון ב־AI, מערכות Web, אוטומציה וחוויות מוצר אינטראקטיביות.</p>
+        <p>
+          ניסיון עמוק בפיתוח מערכות, ממשקי Web, אוטומציה ופתרונות AI בסביבה
+          עסקית מורכבת.
+        </p>
       </section>
     </main>
   );
