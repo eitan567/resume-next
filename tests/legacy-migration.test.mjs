@@ -64,6 +64,10 @@ assert.match(css, /#08285f|#d7891f/, "The landing palette should use the resume'
 assert.match(css, /\.resumeShell \.siteNav\s*\{[\s\S]*justify-content:\s*center;/, "The resume screen nav should be centered instead of spread across the viewport");
 assert.match(css, /\.resumeShell \.siteBrand\s*\{[\s\S]*position:\s*absolute;/, "The resume screen should keep one positioned personal title in the outer nav");
 assert.doesNotMatch(css, /\.resumeShell \.siteBrand\s*\{[\s\S]*display:\s*none;/, "The resume screen should not remove the personal title from the outer nav");
+assert.match(css, /--resume-iframe-scrollbar-space:\s*15px;/, "The resume nav should account for the RTL iframe scrollbar when centering against the document");
+assert.match(css, /--resume-stage-right-space:\s*296px;/, "The resume nav should use the same right-side rail reservation as the embedded resume document area");
+assert.match(css, /\.resumeShell \.siteNavLinks\s*\{[\s\S]*transform:\s*translateX\(var\(--resume-stage-center-shift\)\)/, "The resume nav links should align to the resume document center, not the full viewport center");
+assert.match(css, /@media \(max-width: 1279px\)[\s\S]*--resume-stage-right-space:\s*16px;/, "The resume nav offset should follow the embedded resume layout when the controls are no longer a fixed side rail");
 
 const layout = read("src/app/layout.tsx");
 assert.match(layout, /<html lang="he" dir="rtl"/, "The root layout should preserve the Hebrew RTL document direction");
